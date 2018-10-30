@@ -1,0 +1,13 @@
+version: '3'
+services:
+  export:
+    build: 
+      dockerfile: docker/Dockerfile.export 
+      context: .
+    environment:
+      GCP_BUCKET: finsyn-datastore-exports 
+      GCP_PROJECT: insikt-e1887
+      GCP_KEYFILE: ./key.json
+    command: src/export.py
+    volumes:
+      - ./:/opt/exporter/

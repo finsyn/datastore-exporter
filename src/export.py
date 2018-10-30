@@ -7,6 +7,7 @@ from google.auth.transport.requests import AuthorizedSession
 keyfile = environ['GCP_KEYFILE']
 project_id = environ['GCP_PROJECT']
 bucket = environ['GCP_BUCKET']
+kind = environ['GCP_DATASTORE_KIND']
 
 credentials = credentials(keyfile)
 authed_session = AuthorizedSession(credentials)
@@ -14,7 +15,7 @@ authed_session = AuthorizedSession(credentials)
 payload = json.dumps({
     'outputUrlPrefix': 'gs://%s' % bucket,
     'entityFilter': {
-        'kinds': ['shares'],
+        'kinds': ['%s' % kind],
         'namespaceIds': ['default']
     }
   })
